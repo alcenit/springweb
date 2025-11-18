@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matriz de Guiones Fluida</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title {
+            position: absolute;
+            top: 20%;
+            text-align: center;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+        }
+
+        p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        #matrix {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .dash {
+            position: absolute;
+            width: 2px;
+            height: 20px;
+            background-color: rgba(0, 255, 255, 0.7);
+            transform-origin: center;
+            transition: transform 0.1s ease-out;
+            box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        .instructions {
+            position: absolute;
+            bottom: 10%;
+            text-align: center;
+            z-index: 10;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <h1>Matriz de Guiones Fluida</h1>
+            <p>Mueve el ratón para ver cómo los guiones siguen tu cursor de forma fluida y orgánica.</p>
+        </div>
+        <div id="matrix"></div>
+        <div class="instructions">
+            <p>Mueve el ratón por la pantalla para interactuar con la matriz</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const matrix = document.getElementById('matrix');
+            const dashCount = 100; // Número de guiones
+            const dashes = [];
+            let mouseX = 0;
+            let mouseY = 0;
+            
+            // Crear los guiones
+            for (let i = 0; i < dashCount; i++) {
+                const dash = document.createElement('div');
+                dash.classList.add('dash');
+                
+                // Posición inicial aleatoria
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                const rotation = Math.random() * 360;
+                
+                dash.style.left = `${x}px`;
+                dash.style.top = `${y}px`;
+                dash.style.transform = `rotate(${rotation}deg)`;
+                
+                matrix.appendChild(dash);
+                dashes.push({
+                    element: dash,
+                    x: x,
+                    y: y,
+                    rotation: rotation,
+                    speed: 0.05 + Math.random() * 0.05 // Velocidad aleatoria
+                });
+            }
+            
+            // Seguir el movimiento del ratón
+            document.addEventListener('mousemove', function(e) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+            
+            // Animación fluida
+            function animate() {
+                dashes.forEach(dash => {
+                    // Calcular la dirección hacia el ratón
+                    const dx = mouseX - dash.x;
+                    const dy = mouseY - dash.y;
+                    
+                    // Calcular la distancia
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    // Si está cerca del ratón, girar hacia él
+                    if (distance < 300) {
+                        const targetRotation = Math.atan2(dy, dx) * 180 / Math.PI;
+                        
+                        // Rotación suave hacia el objetivo
+                        let rotationDiff = targetRotation - dash.rotation;
+                        
+                        // Ajustar para el camino más corto
+                        if (rotationDiff > 180) rotationDiff -= 360;
+                        if (rotationDiff < -180) rotationDiff += 360;
+                        
+                        dash.rotation += rotationDiff * dash.speed;
+                    } else {
+                        // Rotación aleatoria suave cuando está lejos
+                        dash.rotation += (Math.random() - 0.5) * 2;
+                    }
+                    
+                    // Aplicar la rotación
+                    dash.element.style.transform = `rotate(${dash.rotation}deg)`;
+                    
+                    // Mover ligeramente hacia el ratón si está cerca
+                    if (distance < 200) {
+                        dash.x += dx * 0.01;
+                        dash.y += dy * 0.01;
+                    } else {
+                        // Movimiento aleatorio suave
+                        dash.x += (Math.random() - 0.5) * 2;
+                        dash.y += (Math.random() - 0.5) * 2;
+                    }
+                    
+                    // Mantener dentro de los límites de la pantalla
+                    if (dash.x < 0) dash.x = 0;
+                    if (dash.x > window.innerWidth) dash.x = window.innerWidth;
+                    if (dash.y < 0) dash.y = 0;
+                    if (dash.y > window.innerHeight) dash.y = window.innerHeight;
+                    
+                    // Actualizar posición
+                    dash.element.style.left = `${dash.x}px`;
+                    dash.element.style.top = `${dash.y}px`;
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            // Iniciar animación
+            animate();
+            
+            // Ajustar al cambiar el tamaño de la ventana
+            window.addEventListener('resize', function() {
+                dashes.forEach(dash => {
+                    if (dash.x > window.innerWidth) dash.x = window.innerWidth;
+                    if (dash.y > window.innerHeight) dash.y = window.innerHeight;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
