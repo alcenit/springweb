@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efecto Estático - Guiones Apuntadores</title>
+    <link th:href="@{/css/effect2.css}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="nav-buttons">
+            <a th:href="@{/}" class="nav-button">Volver al Efecto Fluido</a>
+        </div>
+        
+        <div class="title">
+            <h1>🎯 Guiones Estáticos Apuntadores</h1>
+            <p>Guiones fijos que rotan para apuntar hacia el cursor</p>
+            <p>Mueve el ratón para ver cómo todos te siguen</p>
+        </div>
+        
+        <div class="spring-info">
+            <strong>Spring Boot 3.5.7</strong><br>
+            Java 21 - Efecto Estático
+        </div>
+        
+        <div id="matrix"></div>
+        
+        <div class="instructions">
+            <p>🔭 Cada guión apunta hacia tu cursor desde su posición fija</p>
+        </div>
+    </div>
+
+    <script th:src="@{/js/effect2.js}"></script>
+</body>
+</html>

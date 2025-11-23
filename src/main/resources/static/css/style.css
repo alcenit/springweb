@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0a0a0a;
+    color: #00ffff;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    text-align: center;
+    z-index: 10;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+}
+
+p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+#matrix {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.dash {
+    position: absolute;
+    width: 2px;
+    height: 20px;
+    background: linear-gradient(to bottom, #00ffff, #0088ff);
+    transform-origin: center;
+    transition: transform 0.1s ease-out;
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
+    border-radius: 1px;
+}
+
+.instructions {
+    position: absolute;
+    bottom: 10%;
+    text-align: center;
+    z-index: 10;
+    background-color: rgba(10, 10, 10, 0.8);
+    padding: 15px 25px;
+    border-radius: 10px;
+    border: 1px solid #00ffff;
+}
+
+.spring-info {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(10, 10, 10, 0.8);
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #00ff88;
+    z-index: 10;
+}
+
+.nav-buttons {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+}
+
+.nav-button {
+    background: rgba(0, 255, 255, 0.1);
+    color: #00ffff;
+    border: 1px solid #00ffff;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.nav-button:hover {
+    background: rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
