@@ -109,3 +109,30 @@ p {
     background: rgba(0, 203, 0, 0.3);
     box-shadow: 0 0 15px rgba(0, 203, 0, 0.5);
 }
+
+
+.angle-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        @media (max-width: 768px) {
+            .title h1 {
+                font-size: 2rem;
+            }
+            
+            .spring-info {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-bottom: 2rem;
+            }
+            
+            .angle-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+        }

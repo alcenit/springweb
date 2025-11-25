@@ -9,7 +9,13 @@
 <body>
     <div class="container">
         <div class="nav-buttons">
-            <a th:href="@{/}" class="nav-button">Volver al Efecto Fluido</a>
+            <a href="#" class="nav-button">Volver al Efecto Fluido</a>
+            <div class="angle-controls">
+                <button class="angle-button active" data-angle="cursor">Apuntar al Cursor</button>
+                <button class="angle-button" data-angle="opposite">Dirección Opuesta</button>
+                <button class="angle-button" data-angle="random">Ángulo Aleatorio</button>
+                <button class="angle-button" data-angle="center">Hacia el Centro</button>
+            </div>
         </div>
         
         <div class="title">
