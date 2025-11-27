@@ -6,7 +6,7 @@
 
 body {
     background-color: #0a0a0a;
-    color: #006400;
+    color: #387c7c;
     font-family: 'Arial', sans-serif;
     overflow: hidden;
     height: 100vh;
@@ -31,7 +31,7 @@ body {
 h1 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    text-shadow: 0 0 10px rgba(0, 203, 0, 0.7);
+    text-shadow: 0 0 10px rgba(51, 255, 153, 0.7);
 }
 
 p {
@@ -54,13 +54,12 @@ p {
     position: absolute;
     width: 4px;
     height: 60px;
-    background: linear-gradient(to bottom, #007e00, #006400);
-    transform-origin: center ; /* Cambiado de 'center bottom' a 'center' */
+    background: linear-gradient(to bottom, #204734, #387c7c);
+    transform-origin: center;
     transition: transform 0.2s ease-out;
-    box-shadow: 0 0 12px rgba(0, 203, 0, 0.8);
+    box-shadow: 0 0 12px rgba(133,200,200,0.5);
     border-radius: 2px;
 }
-
 
 .instructions {
     position: absolute;
@@ -70,7 +69,18 @@ p {
     background-color: rgba(10, 10, 10, 0.8);
     padding: 15px 25px;
     border-radius: 10px;
-    border: 1px solid #006400;
+    border: 1px solid #387c7c;
+}
+
+.current-mode {
+    font-size: 1rem;
+    margin-top: 10px;
+    color: #008040;
+}
+
+#currentModeDisplay {
+    font-weight: bold;
+    color: #008040;
 }
 
 .spring-info {
@@ -80,7 +90,7 @@ p {
     background-color: rgba(10, 10, 10, 0.8);
     padding: 10px 15px;
     border-radius: 8px;
-    border: 1px solid #006400;
+    border: 1px solid #008040;
     z-index: 10;
 }
 
@@ -92,9 +102,9 @@ p {
 }
 
 .nav-button {
-    background: rgba(0, 203, 0, 0.1);
-    color: #006400;
-    border: 1px solid #006400;
+    background: rgba(0, 103, 51, 0.1);
+    color: #008040;
+    border: 1px solid #008040;
     padding: 10px 20px;
     margin: 5px;
     border-radius: 5px;
@@ -106,33 +116,88 @@ p {
 }
 
 .nav-button:hover {
-    background: rgba(0, 203, 0, 0.3);
-    box-shadow: 0 0 15px rgba(0, 203, 0, 0.5);
+    background: rgba(0, 103, 51, 0.3);
+    box-shadow: 0 0 15px rgba(0, 103, 51, 0.5);
 }
 
-
+/* Controles de ángulo */
 .angle-controls {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        @media (max-width: 768px) {
-            .title h1 {
-                font-size: 2rem;
-            }
-            
-            .spring-info {
-                position: relative;
-                top: auto;
-                right: auto;
-                margin-bottom: 2rem;
-            }
-            
-            .angle-controls {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    z-index: 10;
+    background: rgba(10, 10, 10, 0.9);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #00ffff;
+    max-width: 300px;
+}
+
+.angle-controls h3 {
+    color: #00ffff;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.angle-buttons-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.angle-button {
+    background: rgba(0, 255, 255, 0.1);
+    color: #00ffff;
+    border: 1px solid #00ffff;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.angle-button:hover {
+    background: rgba(0, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.angle-button.active {
+    background: rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    border-color: #00ff88;
+}
+
+.angle-button .icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.angle-button .label {
+    flex-grow: 1;
+}
+
+/* Scrollbar personalizado */
+.angle-buttons-grid::-webkit-scrollbar {
+    width: 6px;
+}
+
+.angle-buttons-grid::-webkit-scrollbar-track {
+    background: rgba(0, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.angle-buttons-grid::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+.angle-buttons-grid::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 255, 0.5);
+}

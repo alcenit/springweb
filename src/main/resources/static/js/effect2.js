@@ -1,118 +1,162 @@
-   document.addEventListener('DOMContentLoaded', function () {
-            const matrix = document.getElementById('matrix');
-            const dashes = [];
-            let mouseX = window.innerWidth / 2;
-            let mouseY = window.innerHeight / 2;
-            let currentAngleMode = 'cursor'; // Modo por defecto
-            const angleButtons = document.querySelectorAll('.angle-button');
+document.addEventListener('DOMContentLoaded', function () {
+    const matrix = document.getElementById('matrix');
+    const dashes = [];
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let currentAngleMode = 'cursor';
 
-            const cols = 20;
-            const rows = 10;
-            const cellWidth = window.innerWidth / cols;
-            const cellHeight = window.innerHeight / rows;
+    const cols = 50;
+    const rows = 25;
+    const cellWidth = window.innerWidth / cols;
+    const cellHeight = window.innerHeight / rows;
 
-            for (let i = 0; i < rows; i++) {
-                for (let j = 0; j < cols; j++) {
-                    const dash = document.createElement('div');
-                    dash.classList.add('dash');
+    // Inicializar controles de interfaz
+    initializeAngleControls();
 
-                    const x = j * cellWidth + cellWidth / 2;
-                    const y = i * cellHeight + cellHeight / 2;
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+            const dash = document.createElement('div');
+            dash.classList.add('dash');
 
-                    dash.style.left = `${x}px`;
-                    dash.style.top = `${y}px`;
+            const x = j * cellWidth + cellWidth / 2;
+            const y = i * cellHeight + cellHeight / 2;
 
-                    // Esta parte se mantiene para dar una variación inicial al tamaño
-                    const sizeVariation = cellWidth - (cellWidth / 4);//-celWidth/4 para restar un porcentaje de ancho de celda 
-                    dash.style.height = `${ sizeVariation}px`;
-                    dash.style.opacity = 0.6 + Math.random() * 0.4;
+            dash.style.left = `${x}px`;
+            dash.style.top = `${y}px`;
 
-                    matrix.appendChild(dash);
-                    dashes.push({
-                        element: dash,
-                        x: x,
-                        y: y,
-                        // Guardamos la altura inicial, pero ya no la usaremos para cambiarla dinámicamente
-                        baseHeight: sizeVariation,
-                        // Para el modo aleatorio, guardamos un ángulo fijo
-                        randomAngle: Math.random() * 360
-                    });
-                }
-            }
+            const sizeVariation = cellWidth - (cellWidth / 4);
+            dash.style.height = `${sizeVariation}px`;
+            dash.style.opacity = 0.6 + Math.random() * 0.4;
 
-            document.addEventListener('mousemove', function (e) {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                updateAllRotations();
+            matrix.appendChild(dash);
+            dashes.push({
+                element: dash,
+                x: x,
+                y: y,
+                baseHeight: sizeVariation,
+                randomAngle: Math.random() * 360
             });
+        }
+    }
 
-            // --- FUNCIÓN ROTACION ---
-            function updateAllRotations() {
-                dashes.forEach(dash => {
-                    let angle;
-                    
-                    switch(currentAngleMode) {
-                        case 'cursor':
-                            // Modo original: apuntar al cursor
-                            const dx = mouseX - dash.x;
-                            const dy = mouseY - dash.y;
-                            angle = Math.atan2(dy, dx) * 180 / Math.PI + 90;
-                            break;
-                            
-                        case 'opposite':
-                            // Dirección opuesta al cursor
-                            const dx2 = mouseX - dash.x;
-                            const dy2 = mouseY - dash.y;
-                            angle = Math.atan2(dy2, dx2) * 180 / Math.PI + 90 + 180;
-                            break;
-                            
-                        case 'random':
-                            // Ángulo aleatorio fijo para cada guión
-                            angle = dash.randomAngle;
-                            break;
-                            
-                        case 'center':
-                            // Todos apuntan al centro de la pantalla
-                            const centerX = window.innerWidth / 2;
-                            const centerY = window.innerHeight / 2;
-                            const dx3 = centerX - dash.x;
-                            const dy3 = centerY - dash.y;
-                            angle = Math.atan2(dy3, dx3) * 180 / Math.PI + 90;
-                            break;
-                    }
+    document.addEventListener('mousemove', function (e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        updateAllRotations();
+    });
 
-                    // Aplicamos la rotación
-                    dash.element.style.transform = `rotate(${angle}deg)`;
-                });
+    // --- FUNCIÓN ROTACION ---
+    function updateAllRotations() {
+        dashes.forEach(dash => {
+            let angle;
+            const dx = mouseX - dash.x;
+            const dy = mouseY - dash.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            switch (currentAngleMode) {
+                case 'cursor':
+                    angle = Math.atan2(dy, dx) * 180 / Math.PI + 90;
+                    break;
+
+                case 'logaritmica':
+                    const baseAngleLog = Math.atan2(dy, dx) * 180 / Math.PI;
+                    const spiralFactorLog = Math.log(distance + 1) * 50;
+                    angle = baseAngleLog + spiralFactorLog + 90;
+                    break;
+
+                case 'arquimediana':
+                    const baseAngleArq = Math.atan2(dy, dx) * 180 / Math.PI;
+                    const spiralFactorArq = distance * 0.5;
+                    angle = baseAngleArq + spiralFactorArq + 90;
+                    break;
+
+                case 'espiralCircular':
+                    const baseAngleCirc = Math.atan2(dy, dx) * 180 / Math.PI;
+                    const spiralFactorCirc = distance * 0.3;
+                    const waveFactor = Math.sin(distance * 0.02) * 90;
+                    angle = baseAngleCirc + spiralFactorCirc + waveFactor + 90;
+                    break;
+
+                case 'vortex':
+                    const baseAngleVortex = Math.atan2(dy, dx) * 180 / Math.PI;
+                    const vortexFactor = Math.pow(distance, 1.2) * 0.8;
+                    angle = baseAngleVortex + vortexFactor + 90;
+                    break;
+
+                case 'vectorial':
+                    const time = Date.now() * 0.001;
+                    const baseAngleVec = Math.atan2(dy, dx) * 180 / Math.PI;
+                    const spiralVec = distance * 0.4;
+                    const waveVec = Math.sin(distance * 0.01 - time) * 45;
+                    const swirl = Math.cos(dash.x * 0.01) * Math.sin(dash.y * 0.01) * 30;
+                    angle = baseAngleVec + spiralVec + waveVec + swirl + 90;
+                    break;
+
+                case 'random':
+                    angle = dash.randomAngle;
+                    break;
+
+                case 'center':
+                    const centerX = window.innerWidth / 2;
+                    const centerY = window.innerHeight / 2;
+                    const dxCenter = centerX - dash.x;
+                    const dyCenter = centerY - dash.y;
+                    angle = Math.atan2(dyCenter, dxCenter) * 180 / Math.PI + 90;
+                    break;
+
+                default:
+                    angle = Math.atan2(dy, dx) * 180 / Math.PI + 90;
+                    break;
             }
 
-            // Función para cambiar el modo de ángulo
-            function setAngleMode(mode) {
-                currentAngleMode = mode;
+            dash.element.style.transform = `rotate(${angle}deg)`;
+        });
+    }
+
+    function initializeAngleControls() {
+        const angleButtons = document.querySelectorAll('.angle-button');
+        const modeDisplay = document.getElementById('currentModeDisplay');
+        
+        const modeLabels = {
+            'cursor': 'Apuntar al Cursor',
+            'logaritmica': 'Espiral Logarítmica',
+            'arquimediana': 'Espiral Arquimediana',
+            'espiralCircular': 'Espiral Circular',
+            'vortex': 'Espiral Vortex',
+            'vectorial': 'Campo Vectorial',
+            'random': 'Ángulo Aleatorio',
+            'center': 'Hacia el Centro'
+        };
+
+        angleButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remover clase active de todos los botones
+                angleButtons.forEach(btn => btn.classList.remove('active'));
+                // Agregar clase active al botón clickeado
+                this.classList.add('active');
                 
-                // Actualizar botones activos
-                angleButtons.forEach(button => {
-                    if (button.dataset.angle === mode) {
-                        button.classList.add('active');
-                    } else {
-                        button.classList.remove('active');
-                    }
-                });
+                // Cambiar modo
+                currentAngleMode = this.dataset.angle;
+                modeDisplay.textContent = modeLabels[currentAngleMode];
                 
                 // Actualizar rotaciones
                 updateAllRotations();
-            }
-
-            // Event listeners para los botones de ángulo
-            angleButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    setAngleMode(this.dataset.angle);
-                });
-            });
-
-            updateAllRotations();
-
-            window.addEventListener('resize', function () {
-                location.reload();
             });
         });
+    }
+
+    updateAllRotations();
+
+    // Animación continua para modos que necesitan actualización temporal
+    function animate() {
+        if (currentAngleMode === 'vectorial') {
+            updateAllRotations();
+        }
+        requestAnimationFrame(animate);
+    }
+    animate();
+
+    window.addEventListener('resize', function () {
+        location.reload();
+    });
+});
