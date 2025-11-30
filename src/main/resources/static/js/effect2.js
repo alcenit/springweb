@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let mouseY = window.innerHeight / 2;
     let currentAngleMode = 'cursor';
 
-    const cols = 50;
-    const rows = 25;
+    const cols = 60;
+    const rows = 35;
     const cellWidth = window.innerWidth / cols;
     const cellHeight = window.innerHeight / rows;
 
@@ -207,16 +207,17 @@ document.addEventListener('DOMContentLoaded', function () {
             'vortex': 'Espiral Vortex',
             'vectorial': 'Campo Vectorial',
             'random': 'Ángulo Aleatorio',
-            'senoRadial': 'Olas desde el mouse',
+            'senoRadial': 'Ondas desde el mouse',
             'vortexHiperbolico': 'Vortex hiperbólico',
             'campoMagnetico': 'Campo magnético',
             'fibonacci': 'Espiral de Fibonacci',
-            'interferencia': 'Interferencia',
+            'interferencia': 'Interferencia de Ondas',
             'orbital': 'Girar alrededor del mouse',
             'resonancia': 'Resonancia',
-            'caos': 'Caos',
+            'caos': 'Caos Determinístico',
             'turbulencia': 'Turbulencia',
             'center': 'Hacia el Centro'
+ 
         };
 
         angleButtons.forEach(button => {

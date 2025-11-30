@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Círculos Concéntricos con Estela</title>
+    <link th:href="@{/css/effect3.css}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="nav-buttons">
+            <a th:href="@{/}" class="nav-button">Volver al Efecto Fluido</a>
+            <a th:href="@{/effect2}" class="nav-button">Ir a Efecto Estático</a>
+        </div>
+        
+        <div class="title">
+            <h1>🌀 Círculos Concéntricos con Estela</h1>
+            <p>Puntos que se mueven en círculos y dejan una estela que se desvanece</p>
+        </div>
+        
+        <div class="spring-info">
+            <strong>Spring Boot 3.5.7</strong><br>
+            Java 21 - Efecto Círculos
+        </div>
+        
+        <canvas id="canvas"></canvas>
+        
+        <div class="instructions">
+            <p>✨ Los puntos giran en círculos y dejan un rastro que desaparece gradualmente</p>
+        </div>
+    </div>
+
+    <script th:src="@{/js/effect3.js}"></script>
+</body>
+</html>

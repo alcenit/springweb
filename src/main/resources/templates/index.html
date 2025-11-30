@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matriz de Guiones Fluida - Spring Boot</title>
-    <link th:href="@{/css/style.css}" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <div class="nav-buttons">
-            <a th:href="@{/effect2}" class="nav-button">Ver Efecto Estático</a>
-        </div>
-        
-        <div class="title">
-            <h1>🌊 Matriz de Guiones Fluida</h1>
-            <p>Proyecto Spring Boot con efecto de partículas interactivas</p>
-            <p>Mueve el ratón para explorar la matriz reactiva</p>
-        </div>
-        
-        <div class="spring-info">
-            <strong>Spring Boot 3.5.7</strong><br>
-            Java 21
-        </div>
-        
-        <div id="matrix"></div>
-        
-        <div class="instructions">
-            <p>✨ Los guiones siguen tu cursor de forma fluida y orgánica</p>
-        </div>
-    </div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Matriz de Guiones Fluida - Spring Boot</title>
+        <link th:href="@{/css/style.css}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div class="nav-buttons">
+                <a th:href="@{/effect2}" class="nav-button">Ir a Efecto Estático</a>
+                <a th:href="@{/effect3}" class="nav-button">Ir a Círculos Concéntricos</a>
+            </div>
 
-    <script th:src="@{/js/matrix.js}"></script>
-</body>
+            <div class="title">
+                <h1>🌊 Matriz de Guiones Fluida</h1>
+                <p>Proyecto Spring Boot con efecto de partículas interactivas</p>
+                <p>Mueve el ratón para explorar la matriz reactiva</p>
+            </div>
+
+            <div class="spring-info">
+                <strong>Spring Boot 3.5.7</strong><br>
+                Java 21
+            </div>
+
+            <div id="matrix"></div>
+
+            <div class="instructions">
+                <p>✨ Los guiones siguen tu cursor de forma fluida y orgánica</p>
+            </div>
+        </div>
+
+        <script th:src="@{/js/matrix.js}"></script>
+    </body>
 </html>

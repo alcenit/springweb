@@ -1,111 +1,111 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Efecto Estático - Guiones Apuntadores</title>
-    <link th:href="@{/css/effect2.css}" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <div class="nav-buttons">
-            <a th:href="@{/}" class="nav-button">Volver al Efecto Fluido</a>
-        </div>
-        
-        <!-- Controles de ángulo mejorados -->
-        <div class="angle-controls">
-            <h3>Modos de Rotación:</h3>
-            <div class="angle-buttons-grid">
-                <button class="angle-button active" data-angle="cursor">
-                    <span class="icon">🖱️</span>
-                    <span class="label">Apuntar al Cursor</span>
-                </button>
-                <button class="angle-button" data-angle="logaritmica">
-                    <span class="icon">📈</span>
-                    <span class="label">Espiral Logarítmica</span>
-                </button>
-                <button class="angle-button" data-angle="arquimediana">
-                    <span class="icon">🌀</span>
-                    <span class="label">Espiral Arquimediana</span>
-                </button>
-                <button class="angle-button" data-angle="espiralCircular">
-                    <span class="icon">🌊</span>
-                    <span class="label">Espiral Circular</span>
-                </button>
-                <button class="angle-button" data-angle="vortex">
-                    <span class="icon">🌪️</span>
-                    <span class="label">Espiral Vortex</span>
-                </button>
-                <button class="angle-button" data-angle="vectorial">
-                    <span class="icon">⚡</span>
-                    <span class="label">Campo Vectorial</span>
-                </button>
-                <button class="angle-button" data-angle="random">
-                    <span class="icon">🎲</span>
-                    <span class="label">Random</span>
-                </button>
-                <button class="angle-button" data-angle="senoRadial">
-                    <span class="icon">🎲</span>
-                    <span class="label">Seno Radial</span>
-                </button>
-                <button class="angle-button" data-angle="vortexHiperbolico">
-                    <span class="icon">🎲</span>
-                    <span class="label">Vortex Hiperbolico</span>
-                </button>
-                <button class="angle-button" data-angle="campoMagnetico">
-                    <span class="icon">🎲</span>
-                    <span class="label">Campo Magnetico</span>
-                </button>
-                <button class="angle-button" data-angle="fibonacci">
-                    <span class="icon">🎲</span>
-                    <span class="label">Fibonacci</span>
-                </button>
-                <button class="angle-button" data-angle="interferencia">
-                    <span class="icon">🎲</span>
-                    <span class="label">Interferencia</span>
-                </button>
-                <button class="angle-button" data-angle="orbital">
-                    <span class="icon">🎲</span>
-                    <span class="label">Orbital</span>
-                </button>
-                <button class="angle-button" data-angle="resonancia">
-                    <span class="icon">🎲</span>
-                    <span class="label">Resonancia</span>
-                </button>
-                <button class="angle-button" data-angle="caos">
-                    <span class="icon">🎲</span>
-                    <span class="label">Caos</span>
-                </button>
-                <button class="angle-button" data-angle="turbulencia">
-                    <span class="icon">🎲</span>
-                    <span class="label">Turbulencia</span>
-                </button>
-                <button class="angle-button" data-angle="center">
-                    <span class="icon">🎯</span>
-                    <span class="label">Hacia el Centro</span>
-                </button>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Efecto Estático - Guiones Apuntadores</title>
+        <link th:href="@{/css/effect2.css}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div class="nav-buttons">
+                <a th:href="@{/}" class="nav-button">Volver al Efecto Fluido</a>
+                <a th:href="@{/effect3}" class="nav-button">Ir a Círculos Concéntricos</a>
+            </div>
+            <!-- Controles de ángulo mejorados -->
+            <div class="angle-controls">
+                <h3>Modos de Rotación:</h3>
+                <div class="angle-buttons-grid">
+                    <button class="angle-button active" data-angle="cursor">
+                        <span class="icon">🖱️</span>
+                        <span class="label">Apuntar al Cursor</span>
+                    </button>
+                    <button class="angle-button" data-angle="logaritmica">
+                        <span class="icon">📈</span>
+                        <span class="label">Espiral Logarítmica</span>
+                    </button>
+                    <button class="angle-button" data-angle="arquimediana">
+                        <span class="icon">🌀</span>
+                        <span class="label">Espiral Arquimediana</span>
+                    </button>
+                    <button class="angle-button" data-angle="espiralCircular">
+                        <span class="icon">🌊</span>
+                        <span class="label">Espiral Circular</span>
+                    </button>
+                    <button class="angle-button" data-angle="vortex">
+                        <span class="icon">🌪️</span>
+                        <span class="label">Espiral Vortex</span>
+                    </button>
+                    <button class="angle-button" data-angle="vectorial">
+                        <span class="icon">⚡</span>
+                        <span class="label">Campo Vectorial</span>
+                    </button>
+                    <button class="angle-button" data-angle="random">
+                        <span class="icon">🎲</span>
+                        <span class="label">Random</span>
+                    </button>
+                    <button class="angle-button" data-angle="senoRadial">
+                        <span class="icon">🎲</span>
+                        <span class="label">Seno Radial</span>
+                    </button>
+                    <button class="angle-button" data-angle="vortexHiperbolico">
+                        <span class="icon">🎲</span>
+                        <span class="label">Vortex Hiperbolico</span>
+                    </button>
+                    <button class="angle-button" data-angle="campoMagnetico">
+                        <span class="icon">🎲</span>
+                        <span class="label">Campo Magnetico</span>
+                    </button>
+                    <button class="angle-button" data-angle="fibonacci">
+                        <span class="icon">🎲</span>
+                        <span class="label">Fibonacci</span>
+                    </button>
+                    <button class="angle-button" data-angle="interferencia">
+                        <span class="icon">🎲</span>
+                        <span class="label">Interferencia</span>
+                    </button>
+                    <button class="angle-button" data-angle="orbital">
+                        <span class="icon">🎲</span>
+                        <span class="label">Orbital</span>
+                    </button>
+                    <button class="angle-button" data-angle="resonancia">
+                        <span class="icon">🎲</span>
+                        <span class="label">Resonancia</span>
+                    </button>
+                    <button class="angle-button" data-angle="caos">
+                        <span class="icon">🎲</span>
+                        <span class="label">Caos</span>
+                    </button>
+                    <button class="angle-button" data-angle="turbulencia">
+                        <span class="icon">🎲</span>
+                        <span class="label">Turbulencia</span>
+                    </button>
+                    <button class="angle-button" data-angle="center">
+                        <span class="icon">🎯</span>
+                        <span class="label">Hacia el Centro</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="title">
+                <h1> Guiones Estáticos Apuntadores</h1>
+                <p>Guiones fijos que rotan para apuntar hacia el cursor</p>
+                <p>Mueve el ratón para ver cómo todos te siguen</p>
+            </div>
+
+            <div class="spring-info">
+                <strong>Spring Boot 3.5.7</strong><br>
+                Java 21 - Efecto Estático
+            </div>
+
+            <div id="matrix"></div>
+
+            <div class="instructions">
+                <p>🔭 Cada guión apunta hacia tu cursor desde su posición fija</p>
+                <p class="current-mode">Modo actual: <span id="currentModeDisplay">Apuntar al Cursor</span></p>
             </div>
         </div>
-        
-        <div class="title">
-            <h1> Guiones Estáticos Apuntadores</h1>
-            <p>Guiones fijos que rotan para apuntar hacia el cursor</p>
-            <p>Mueve el ratón para ver cómo todos te siguen</p>
-        </div>
-        
-        <div class="spring-info">
-            <strong>Spring Boot 3.5.7</strong><br>
-            Java 21 - Efecto Estático
-        </div>
-        
-        <div id="matrix"></div>
-        
-        <div class="instructions">
-            <p>🔭 Cada guión apunta hacia tu cursor desde su posición fija</p>
-            <p class="current-mode">Modo actual: <span id="currentModeDisplay">Apuntar al Cursor</span></p>
-        </div>
-    </div>
 
-    <script th:src="@{/js/effect2.js}"></script>
-</body>
+        <script th:src="@{/js/effect2.js}"></script>
+    </body>
 </html>
