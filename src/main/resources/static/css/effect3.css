@@ -23,6 +23,10 @@ body {
 }
 
 .title {
+    position: absolute;
+    top: 20px;
+
+
     text-align: center;
     z-index: 10;
     margin-bottom: 2rem;
@@ -53,6 +57,7 @@ p {
 .instructions {
     position: absolute;
     bottom: 10%;
+    right: 20px;
     text-align: center;
     z-index: 10;
     background-color: rgba(10, 10, 10, 0.8);
@@ -100,3 +105,23 @@ p {
     background: rgba(0, 255, 136, 0.3);
     box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
 }
+/* AUDIO CONTROLS */
+
+.audio-controls {
+    position: fixed;
+    bottom: 300px;
+    right: 20px;
+    background: rgba(0,0,0,0.8);
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid #00ff88;
+    z-index: 1000;
+}
+.audio-controls h3 {
+    color: #00ff88;
+    margin-bottom: 10px;
+}
+audio {
+    width: 250px;
+}
+
