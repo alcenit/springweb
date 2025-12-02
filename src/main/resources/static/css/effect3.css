@@ -54,6 +54,7 @@ p {
     z-index: 1;
 }
 
+
 .instructions {
     position: absolute;
     bottom: 10%;
@@ -107,6 +108,7 @@ p {
 }
 /* AUDIO CONTROLS */
 
+/* CSS - Para el reproductor personalizado */
 .audio-controls {
     position: fixed;
     bottom: 300px;
@@ -116,12 +118,102 @@ p {
     border-radius: 10px;
     border: 2px solid #00ff88;
     z-index: 1000;
+    width: 250px;
 }
+
 .audio-controls h3 {
     color: #00ff88;
     margin-bottom: 10px;
+    text-align: center;
 }
-audio {
-    width: 250px;
+
+/* Oculta el elemento audio nativo */
+#background-audio {
+    display: none;
 }
+
+/* Estilos para el reproductor personalizado */
+.custom-audio-player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.audio-btn {
+    background: rgba(107, 180, 146, 0.1);
+    color: #00ff88;
+    border: 3px solid #294E4F;
+    padding: 10px 15px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 200px;
+    height: 50px;
+}
+
+.audio-btn:hover {
+    background: rgba(0, 255, 136, 0.3);
+    transform: scale(1.1);
+}
+
+/* Estilos para el slider de volumen */
+#volume-slider {
+    width: 100%;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(0, 255, 136, 0.2);
+    border-radius: 3px;
+    outline: none;
+}
+
+/* Estilo para el track del slider */
+#volume-slider::-webkit-slider-track {
+    background: rgba(0, 255, 136, 0.2);
+    border-radius: 3px;
+}
+
+#volume-slider::-moz-range-track {
+    background: rgba(0, 255, 136, 0.2);
+    border-radius: 3px;
+}
+
+/* Estilo para el thumb del slider */
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #00ff88;
+    cursor: pointer;
+    border: 2px solid rgba(0, 0, 0, 0.8);
+}
+
+#volume-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #00ff88;
+    cursor: pointer;
+    border: 2px solid rgba(0, 0, 0, 0.8);
+}
+
+.volume-text {
+    color: #00ff88;
+    font-size: 0.9rem;
+}
+
+#volume-value {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.icono {
+    font-size: 32px;
+    color: #007bff;
+}
+
 

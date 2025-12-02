@@ -28,14 +28,18 @@
             <!-- Audio de fondo -->
             <div class="audio-controls">
                 <h3>Sonido Ambiente</h3>
-                <audio id="background-audio" controls loop>
+                <audio id="background-audio" loop>
                     <source src="/audio/backsound1.wav" type="audio/wav">
                     <source src="/audio/backsound2.wav" type="audio/wav">
                     Tu navegador no soporta audio HTML5.
                 </audio>
-                <div style="margin-top: 10px;">
-                    <button id="play-btn" style="margin-right: 5px;">▶️ Reproducir</button>
-                    <button id="pause-btn">⏸️ Pausar</button>
+
+                <div class="custom-audio-player">
+                    <button id="play-pause-btn" class="audio-btn">
+                        <i class="fi fi-rr-play"></i>
+                    </button>
+                    <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.5">
+                    <span class="volume-text">Volumen: <span id="volume-value">50%</span></span>
                 </div>
             </div>
 
@@ -44,7 +48,7 @@
 
         </div>
         <div class="instructions">
-            <p>✨ Los puntos giran en círculos y dejan un rastro que desaparece gradualmente</p>
+            <p> Los puntos giran en círculos y su rastro que desaparece gradualmente</p>
         </div>
 
         <script th:src="@{/js/effect3.js}"></script>

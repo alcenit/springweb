@@ -1,6 +1,71 @@
 document.addEventListener('DOMContentLoaded', function () {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
+    
+    // Audio controller
+    const audio = document.getElementById('background-audio');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const volumeSlider = document.getElementById('volume-slider');
+    const volumeValue = document.getElementById('volume-value');
+    const icon = playPauseBtn.querySelector('i');
+    
+    // Configurar volumen inicial
+    audio.volume = volumeSlider.value;
+    volumeValue.textContent = `${Math.round(volumeSlider.value * 100)}%`;
+    
+    // Control de play/pausa
+    playPauseBtn.addEventListener('click', function() {
+        if (audio.paused) {
+            audio.play()
+                .then(() => {
+                    icon.className = 'fi fi-rr-pause';
+                })
+                .catch(error => {
+                    console.error("Error al reproducir:", error);
+                    // Si falla, inicializar con interacción del usuario
+                    document.body.addEventListener('click', function initAudio() {
+                        audio.play().then(() => {
+                            icon.className = 'fi fi-rr-pause';
+                        });
+                        document.body.removeEventListener('click', initAudio);
+                    }, { once: true });
+                });
+        } else {
+            audio.pause();
+            icon.className = 'fi fi-rr-play';
+        }
+    });
+    
+    // Control de volumen
+    volumeSlider.addEventListener('input', function() {
+        audio.volume = this.value;
+        volumeValue.textContent = `${Math.round(this.value * 100)}%`;
+    });
+    
+    // Eventos para sincronizar el ícono con el estado del audio
+    audio.addEventListener('play', () => {
+        icon.className = 'fi fi-rr-pause';
+    });
+    
+    audio.addEventListener('pause', () => {
+        icon.className = 'fi fi-rr-play';
+    });
+    
+    // Intentar reproducir automáticamente (puede ser bloqueado por el navegador)
+    audio.play()
+        .then(() => {
+            // Reproducción exitosa
+            icon.className = 'fi fi-rr-pause';
+        })
+        .catch(error => {
+            // Auto-play bloqueado, esperar interacción del usuario
+            console.log("Auto-play bloqueado. Esperando interacción del usuario.");
+            icon.className = 'fi fi-rr-play';
+            
+            // Opcional: mostrar mensaje al usuario
+            playPauseBtn.title = "Click para reproducir";
+        });
+    // Fin audio controller
 
     // Ajustar el canvas al tamaño de la ventana
     canvas.width = window.innerWidth;
@@ -20,8 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Inicializar círculos y puntos
     for (let i = 0; i < numCircles; i++) {
         const radius = baseRadius + i * radiusStep;
-        // const speed = 0.002 + i * 0.001; // Velocidad angular, diferente por círculo
-        // const speed = 0.005 - (i * 0.0005); // Velocidad decreciente
+        // Ajustar velocidad según el radio (más lento en círculos más grandes)
         const speed = 0.009 * (baseRadius + (numCircles * radiusStep)) / radius;
         const color = colors[i % colors.length];
 
@@ -30,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
             circles.push({
                 radius: radius,
                 angle: angle,
-                speed: speed, //* (Math.random() > 0.5 ? 1 : -1), // Sentido aleatorio
+                speed: speed,
                 color: color,
                 trail: [] // Array para almacenar las posiciones de la estela
             });
@@ -68,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
             circle.trail.forEach((point, index) => {
                 // La opacidad disminuye a medida que el punto es más antiguo
                 const opacity = 1 - (index / trailLength);
-                const size = 3 * (1 - (index / trailLength) * 0.7); // Tamaño también disminuye
+                const size = 3 * (1 - (index / trailLength) * 0.7);
 
                 ctx.beginPath();
                 ctx.arc(point.x, point.y, size, 0, Math.PI * 2);
@@ -108,33 +172,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Iniciar animación
     animate();
 
-    //controles de audio
-
-    // Control del audio con JavaScript
-    const audio = document.getElementById('background-audio');
-    const playBtn = document.getElementById('play-btn');
-    const pauseBtn = document.getElementById('pause-btn');
-
-    playBtn.addEventListener('click', () => {
-        audio.play();
-    });
-
-    pauseBtn.addEventListener('click', () => {
-        audio.pause();
-    });
-
-    // Reproducir automáticamente (con permiso del usuario)
-    document.addEventListener('click', function initAudio() {
-        audio.play().catch(e => {
-            console.log("Auto-play bloqueado:", e);
-        });
-        document.removeEventListener('click', initAudio);
-    });
-
     // Redimensionar canvas cuando cambia el tamaño de la ventana
     window.addEventListener('resize', function () {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     });
 });
-
