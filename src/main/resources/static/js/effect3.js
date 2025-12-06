@@ -13,26 +13,30 @@ document.addEventListener('DOMContentLoaded', function () {
     audio.volume = volumeSlider.value;
     volumeValue.textContent = `${Math.round(volumeSlider.value * 100)}%`;
     
-    // Control de play/pausa
+      icon.className = 'fas fa-pause';  
+      icon.className = 'fas fa-play';   
+    
+    
+    // Control de play/pausa    
     playPauseBtn.addEventListener('click', function() {
         if (audio.paused) {
             audio.play()
                 .then(() => {
-                    icon.className = 'fi fi-rr-pause';
+                 icon.className = 'fas fa-pause';  
                 })
                 .catch(error => {
                     console.error("Error al reproducir:", error);
                     // Si falla, inicializar con interacción del usuario
                     document.body.addEventListener('click', function initAudio() {
                         audio.play().then(() => {
-                            icon.className = 'fi fi-rr-pause';
+                          icon.className = 'fas fa-pause';  
                         });
                         document.body.removeEventListener('click', initAudio);
                     }, { once: true });
                 });
         } else {
             audio.pause();
-            icon.className = 'fi fi-rr-play';
+         icon.className = 'fas fa-play';   
         }
     });
     
@@ -44,23 +48,23 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // Eventos para sincronizar el ícono con el estado del audio
     audio.addEventListener('play', () => {
-        icon.className = 'fi fi-rr-pause';
+      icon.className = 'fas fa-pause';  
     });
     
     audio.addEventListener('pause', () => {
-        icon.className = 'fi fi-rr-play';
+        icon.className = 'fas fa-play';    
     });
     
     // Intentar reproducir automáticamente (puede ser bloqueado por el navegador)
     audio.play()
         .then(() => {
             // Reproducción exitosa
-            icon.className = 'fi fi-rr-pause';
+         icon.className = 'fas fa-pause';  
         })
         .catch(error => {
             // Auto-play bloqueado, esperar interacción del usuario
             console.log("Auto-play bloqueado. Esperando interacción del usuario.");
-            icon.className = 'fi fi-rr-play';
+           icon.className = 'fas fa-play';    
             
             // Opcional: mostrar mensaje al usuario
             playPauseBtn.title = "Click para reproducir";
